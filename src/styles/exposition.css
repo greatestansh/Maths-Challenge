@@ -1,0 +1,36 @@
+.chapter-masthead { flex-wrap: wrap; padding-block: .5rem; gap: .25rem 1.5rem; }
+.chapter-masthead nav { flex-wrap: wrap; column-gap: clamp(.8rem, 1.55vw, 1.4rem); row-gap: 0; }
+.chapter-masthead nav a { font-size: .875rem; }
+.puzzle-intro { margin-bottom: 1.4rem; }
+.prose .source-note { color: var(--muted); font-size: .9rem; }
+.exposition-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1rem; margin-block: .75rem 1rem; }
+.exposition-grid > * { min-width: 0; }
+.inset-figure { margin: 0; padding: 1rem; background: var(--stage-raised); border: 1px solid var(--line); border-radius: .4rem; }
+.inset-figure figcaption { font-size: .9rem; margin-top: .5rem; }
+.inset-figure .tree-node text { paint-order: stroke; stroke: var(--stage-raised); stroke-width: 2.5px; }
+.inset-figure .branch-bit { display: none; }
+.triplet-controls { align-items: start; }
+.tone-c { --tone: var(--stage-text); color: var(--tone); }
+.tree-edge.tone-c { stroke-dasharray: 9 3 2 3; }
+.legend .tone-c i { border-block-start-style: dashed; }
+.distance-pairs { margin: 0; }
+.distance-pairs > div { border-bottom: 1px solid var(--line); padding: .5rem .6rem; }
+.distance-pairs > div.largest { border-left: 2px solid var(--shared); }
+.distance-pairs dd { margin: .14rem 0 0; }
+.distance-pairs dd.muted { font-size: .9rem; }
+.doubling-readout .tree-readout { overflow-x: auto; }
+.doubling-readout .bit-word { gap: .18rem; width: max-content; }
+.exposition-grid .bit-word sub { align-self: end; font-size: .67em; }
+.lab-reset { margin-top: .65rem; }
+.carry-controls { margin-bottom: .85rem; }
+.carry-reading .carry-words { max-width: 100%; overflow-x: auto; }
+.carry-reading .carry-words .bit-word { width: max-content; padding-inline-end: .2rem; }
+.compatibility-table { margin: 1rem 0; padding: clamp(.6rem, 2vw, 1rem); }
+.compatibility-table figcaption { font: 1.25rem var(--serif); }
+.compatibility-table th, .compatibility-table td { overflow-wrap: anywhere; }
+.challenge { border-bottom: 1px solid var(--rule); }
+
+@media (max-width: 47rem) {
+  .exposition-grid { grid-template-columns: minmax(0,1fr); }
+  .chapter-masthead nav { column-gap: .8rem; }
+}

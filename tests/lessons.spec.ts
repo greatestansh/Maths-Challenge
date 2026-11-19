@@ -141,6 +141,7 @@ test('shows an explicit finite carry and separate congruence in the main reading
   await page.goto('/#limit');
   await expect(page.getByRole('heading', { name: 'Why −1 has an all-ones expansion' })).toBeVisible();
   const carry = page.locator('.carry-example');
+  for (let index = 0; index < 8; index++) await carry.getByRole('button', { name: 'Step carry' }).click();
   await expect(carry.locator('.carry-out annotation')).toHaveText('1\\cdot 2^{8}=256');
   await expect(carry.locator('.carry-arithmetic annotation')).toHaveText(['255+1=256', '256\\equiv 0\\pmod{256}']);
   await expect(carry.locator('.carry-words .visually-hidden').last()).toHaveText('Result low bits 0 0 0 0 0 0 0 0');
@@ -177,6 +178,8 @@ for (const width of [375, 1440]) {
     const lab = finalLab(page);
     for (let index = 0; index < 4; index++) await lab.getByRole('button', { name: 'Step' }).click();
     await lab.screenshot({ path: info.outputPath('convergence.png') });
-    await page.locator('.carry-example').screenshot({ path: info.outputPath('carry.png') });
+    const carry = page.locator('.carry-example');
+    for (let index = 0; index < 8; index++) await carry.getByRole('button', { name: 'Step carry' }).click();
+    await carry.screenshot({ path: info.outputPath('carry.png') });
   });
 }

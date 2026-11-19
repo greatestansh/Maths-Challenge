@@ -2,10 +2,11 @@ import { useRef, useState, type KeyboardEvent } from 'react';
 import { pow2, residue } from '../math/twoadic.mjs';
 import { nodeKey, treeLayout, type DiagramNode, type TreeClass } from '../math/treeLayout';
 
-export function TreeDiagram({ depth, a, b, full, preview = false, compact = false, label, selected, onSelect }: {
+export function TreeDiagram({ depth, a, b, c, full, preview = false, compact = false, label, selected, onSelect }: {
   depth: number;
   a?: bigint;
   b?: bigint;
+  c?: bigint;
   full: boolean;
   preview?: boolean;
   compact?: boolean;
@@ -18,6 +19,7 @@ export function TreeDiagram({ depth, a, b, full, preview = false, compact = fals
   const anchors: TreeClass[] = [];
   if (a !== undefined) anchors.push({ depth, residue: residue(a, depth) });
   if (b !== undefined) anchors.push({ depth, residue: residue(b, depth) });
+  if (c !== undefined) anchors.push({ depth, residue: residue(c, depth) });
   if (selected) anchors.push(selected);
   const { nodes, width, height } = treeLayout(depth, full, anchors, preview, compact);
   const byKey = new Map(nodes.map((node) => [node.key, node]));
@@ -32,9 +34,10 @@ export function TreeDiagram({ depth, a, b, full, preview = false, compact = fals
     if (a === undefined && b === undefined) return node.depth === depth ? 'shared' : 'idle';
     const isA = a !== undefined && residue(a, node.depth) === node.residue;
     const isB = b !== undefined && residue(b, node.depth) === node.residue;
-    if (isA && isB) return 'shared';
+    const isC = c !== undefined && residue(c, node.depth) === node.residue;
+    if ((isA && (isB || isC)) || (isB && isC)) return 'shared';
     if (isA) return 'a';
-    return isB ? 'b' : 'idle';
+    return isB ? 'b' : isC ? 'c' : 'idle';
   }
 
   function navigate(event: KeyboardEvent<SVGGElement>, node: DiagramNode) {

@@ -1,9 +1,9 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { IntegerField } from '../components/IntegerField';
+import { BallReadout } from '../components/BallReadout';
 import { LabFrame } from '../components/LabFrame';
 import { TreeDiagram } from '../components/TreeDiagram';
-import { displayInteger } from '../math/format';
-import { ballExamples, formatSize, path, pow2, residue } from '../math/twoadic.mjs';
+import { path, residue } from '../math/twoadic.mjs';
 import { nodeKey, type TreeClass } from '../math/treeLayout';
 import { lastTerm, useSequence } from '../state/SequenceContext';
 import { TreeReadout } from './TreeReadout';
@@ -42,8 +42,6 @@ export function ResidueTree({ onGuide }: { onGuide: () => void }) {
   const pathB = valueB === undefined ? undefined : path(valueB, depth);
   const inBallMode = mode === 'ball';
   const full = depth <= 4 || largeView;
-  const examples = ballExamples(selected.residue, selected.depth);
-  const otherCenter = examples[3];
 
   useLayoutEffect(() => {
     if (largeView && depth > 4) centerDiagram(scrollArea.current, root);
@@ -161,20 +159,8 @@ export function ResidueTree({ onGuide }: { onGuide: () => void }) {
             </table>
           </div>
         </div>
-        {inBallMode ? (
-          <div className="tree-readout ball-readout" aria-live="polite">
-            <p className="eyebrow">Selected closed ball in ℤ₂</p>
-            <p className="ball-class">{selected.residue.toString()} mod {pow2(selected.depth).toString()}</p>
-            <p>Radius <strong>{formatSize({ kind: 'pow2', exponent: -selected.depth })}</strong>, including the boundary</p>
-            <p>Center <strong>{displayInteger(center)}</strong></p>
-            <p className="muted">Integer examples from this infinite class</p>
-            <p className="ball-examples">{examples.map(displayInteger).join(', ')}</p>
-            <button type="button" className="stage-button" onClick={() => setCenter(center === otherCenter ? selected.residue : otherCenter)}>
-              Use {displayInteger(center === otherCenter ? selected.residue : otherCenter)} as center
-            </button>
-            <p className="muted">Every member of the ball can serve as its center.</p>
-          </div>
-        ) : <TreeReadout a={valueA} b={valueB} depth={depth} />}
+        {inBallMode ? <BallReadout selected={selected} center={center} onCenter={setCenter} />
+          : <TreeReadout a={valueA} b={valueB} depth={depth} />}
       </div>
     </LabFrame>
   );
