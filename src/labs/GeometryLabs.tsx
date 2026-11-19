@@ -14,9 +14,10 @@ export function BallLesson() {
   return <LabFrame title="Can the center move?" id="ball-lesson-title" label="The ball of radius 1/8">
     <div className="exposition-grid">
       <div>
-        <figure className="lesson-diagram inset-figure">
-          <TreeDiagram depth={3} a={center} selected={ball} full compact label="The highlighted subtree ends at the class 1 modulo 8" />
-          <figcaption className="muted">The highlighted class fixes the low bits 001.</figcaption>
+        <figure className="lesson-diagram inset-figure recenter-figure">
+          <TreeDiagram depth={4} a={1n} b={9n} selected={ball} centerMarker={{ depth: 4, residue: center }} full={false} compact
+            label={`The class 1 modulo 8 contains 1 and 9 modulo 16. The center marker is at ${center} modulo 16.`} />
+          <figcaption className="muted">Violet follows the ball at 1 modulo 8 into both its children. The amber ring marks the current center.</figcaption>
         </figure>
         <p>Predict what happens to the members when the center moves from 1 to 9.</p>
         <div className="controls" role="group" aria-label="Predict what happens to ball membership">
@@ -31,6 +32,20 @@ export function BallLesson() {
       </div>
     </div>
   </LabFrame>;
+}
+
+export function BallRelationships() {
+  const examples = [
+    { title: 'Nested balls', other: { depth: 4, residue: 9n }, label: 'The amber class 9 modulo 16 lies under the violet class 1 modulo 8.', note: 'Every member of 9 modulo 16 is also 1 modulo 8.' },
+    { title: 'Disjoint balls', other: { depth: 3, residue: 3n }, label: 'Violet marks 1 modulo 8, while amber marks the separate class 3 modulo 8.', note: 'The classes 1 and 3 modulo 8 have no common member.' },
+  ];
+  return <div className="ball-relationships" role="group" aria-label="Nested and disjoint subtrees">
+    {examples.map(({ title, other, label, note }) => <figure className="stage lesson-diagram inset-figure" key={title}>
+      <figcaption><strong>{title}</strong></figcaption>
+      <TreeDiagram depth={4} a={1n} b={other.residue} selected={ball} comparison={other} full={false} compact label={label} />
+      <p className="muted">{note}</p>
+    </figure>)}
+  </div>;
 }
 
 export function ThreePointTree() {

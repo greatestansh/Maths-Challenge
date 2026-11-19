@@ -1,6 +1,22 @@
+:root { scroll-padding-top: 2.25rem; }
 .chapter-masthead { flex-wrap: wrap; padding-block: .5rem; gap: .25rem 1.5rem; }
 .chapter-masthead nav { flex-wrap: wrap; column-gap: clamp(.8rem, 1.55vw, 1.4rem); row-gap: 0; }
 .chapter-masthead nav a { font-size: .875rem; }
+.chapter-masthead nav a[aria-current='location'] { color: var(--ink); text-decoration: underline; }
+.chapter-position {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  min-height: 1.85rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--muted);
+  font-size: .8rem;
+}
+.chapter-position strong { color: var(--ink); }
 .puzzle-intro { margin-bottom: 1.4rem; }
 .prose .source-note { color: var(--muted); font-size: .9rem; }
 .exposition-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1rem; margin-block: .75rem 1rem; }
@@ -9,6 +25,28 @@
 .inset-figure figcaption { font-size: .9rem; margin-top: .5rem; }
 .inset-figure .tree-node text { paint-order: stroke; stroke: var(--stage-raised); stroke-width: 2.5px; }
 .inset-figure .branch-bit { display: none; }
+.center-marker { pointer-events: none; }
+.center-marker circle { fill: none; stroke: var(--b); stroke-width: 2px; }
+.center-marker text { fill: var(--b); font: 700 16px var(--mono); }
+@media (prefers-reduced-motion: no-preference) {
+  .center-marker { transition: transform 220ms ease; }
+}
+.ball-relationships { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; max-width: 54rem; margin: 1.5rem auto; }
+.ball-relationships .compact-diagram { max-width: 23rem; }
+.ball-relationships p { margin-bottom: 0; font-size: .9rem; }
+.fraction-candidates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
+.fraction-candidate { border: 1px solid var(--line); border-radius: .35rem; background: var(--stage); padding: clamp(.43rem, 1vw, .8rem); }
+.fraction-candidate .eyebrow { text-transform: none; font-family: var(--mono); }
+.fraction-candidate p:not(.eyebrow) { margin: .48rem 0; font-size: .9rem; }
+.fraction-candidate .stage-button { max-width: 100%; text-align: left; padding-inline: .45rem; }
+.candidate-product, .fraction-history code { font-family: var(--mono); }
+.fraction-history th, .fraction-history td { height: auto; padding-block: .28rem; }
+.fraction-history code { display: inline-block; min-width: 8ch; text-align: end; }
+.fraction-word .bit-word { display: grid; grid-template-columns: 5.25ch repeat(8, minmax(0, .8rem)) auto; justify-content: start; column-gap: .2rem; }
+.fraction-word .bit-word .bit-label { grid-column: 1; margin-inline-end: 0; text-align: start; white-space: nowrap; }
+.fraction-word .newest-bit { grid-column-start: var(--first-bit-column); }
+.fraction-expansion { color: var(--shared); font-size: clamp(1.3rem, 3vw, 1.8rem); }
+.newest-bit { box-shadow: inset 0 -2px var(--b); color: var(--b); font-weight: 700; }
 .triplet-controls { align-items: start; }
 .tone-c { --tone: var(--stage-text); color: var(--tone); }
 .tree-edge.tone-c { stroke-dasharray: 9 3 2 3; }
@@ -33,4 +71,7 @@
 @media (max-width: 47rem) {
   .exposition-grid { grid-template-columns: minmax(0,1fr); }
   .chapter-masthead nav { column-gap: .8rem; }
+}
+@media (max-width: 34rem) {
+  .ball-relationships { grid-template-columns: minmax(0, 1fr); }
 }

@@ -1,4 +1,5 @@
 import { Equation } from './components/Math';
+import { ChapterNavigation } from './components/ChapterNavigation';
 import { TreeDiagram } from './components/TreeDiagram';
 import { article } from './content/article';
 import { exposition } from './content/exposition';
@@ -7,7 +8,7 @@ import { ConvergenceLab } from './labs/ConvergenceLab';
 import { DistanceLab } from './labs/DistanceLab';
 import { DoublingLab } from './labs/DoublingLab';
 import { FractionBuilder } from './labs/FractionBuilder';
-import { BallLesson, ThreePointTree } from './labs/GeometryLabs';
+import { BallLesson, BallRelationships, ThreePointTree } from './labs/GeometryLabs';
 import { GuidedTree } from './labs/GuidedTree';
 import { LowBitBridge } from './labs/LowBitBridge';
 import { PartialSums } from './labs/PartialSums';
@@ -75,12 +76,7 @@ export function App() {
   return (
     <SequenceProvider>
       <a href="#article" className="skip-link">Skip to article</a>
-      <header className="masthead chapter-masthead wrap" id="top">
-        <a className="brand" href="#top"><span className="brand-mark" aria-hidden="true">₂</span> A Different Kind of Close</a>
-        <nav aria-label="Chapters">
-          {chapters.map(([id, label]) => <a key={id} href={`#${id}`}>{label}</a>)}
-        </nav>
-      </header>
+      <ChapterNavigation chapters={chapters} />
       <main className="wrap" id="article" tabIndex={-1}>
         <article>
           <Hero />
@@ -130,7 +126,9 @@ export function App() {
               <Paragraphs copy={exposition.geometry.slice(0, 1)} />
             </div>
             <BallLesson />
-            <div className="prose after-lab"><Paragraphs copy={exposition.geometry.slice(1, 5)} /></div>
+            <div className="prose after-lab"><Paragraphs copy={exposition.geometry.slice(1, 3)} /></div>
+            <BallRelationships />
+            <div className="prose after-lab"><Paragraphs copy={exposition.geometry.slice(3, 5)} /></div>
             <ThreePointTree />
             <div className="prose after-lab">
               <Paragraphs copy={exposition.geometry.slice(5, 6)} />
@@ -150,7 +148,6 @@ export function App() {
             <ConvergenceLab />
             <div className="prose after-lab">
               <Paragraphs copy={exposition.convergence.slice(0, 3)} />
-              <p>{article.limit.intro}</p>
               <p>{article.limit.geometric} <Equation tex="2S_n-S_n=2^n-1" />.</p>
               <p>{article.limit.proof}</p>
               <p className="essay-conclusion">{article.limit.conclusion}</p>

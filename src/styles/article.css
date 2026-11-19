@@ -64,7 +64,7 @@ h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; }
 .hero-figure figcaption strong { color: var(--stage-text); }
 .shared-copy { color: var(--shared); }
 .chapter { border-top: 1px solid var(--rule); margin-top: clamp(3.5rem, 8vw, 7rem); padding-top: clamp(2.5rem, 5vw, 4.5rem); scroll-margin-top: 1rem; }
-.prose { max-width: 66ch; margin-inline: auto; font-size: 1.1875rem; line-height: 1.65; }
+.prose { max-width: 70ch; margin-inline: auto; font-size: 1.1875rem; line-height: 1.65; }
 .prose h2 { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.01; letter-spacing: -.035em; margin: .5rem 0 .9rem; text-wrap: pretty; }
 .prose p:not(.eyebrow) { margin: .65rem 0 1rem; }
 .equation { font-size: clamp(1rem, 3vw, 1.25rem); }

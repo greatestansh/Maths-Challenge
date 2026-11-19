@@ -24,9 +24,8 @@ export const article = {
   },
   limit: {
     title: 'One sequence, two distances.',
-    intro: 'The difference between the partial sum and −1 is exactly 2ⁿ. Its ordinary size is 2ⁿ, which grows with n. Its 2-adic size is 2⁻ⁿ, which shrinks with n.',
     geometric: 'Doubling the sum shifts each term up one power of two. Subtracting the original sum cancels the terms in the middle and leaves',
-    proof: 'Choose any positive tolerance ε. There is an N for which 2⁻ᴺ < ε. Every n ≥ N then has 2-adic distance at most 2⁻ᴺ, so the partial sums converge to −1 in the 2-adic metric.',
+    proof: 'The difference from −1 is 2ⁿ, so its 2-adic size is 2⁻ⁿ. For any tolerance ε > 0, choose N with 2⁻ᴺ < ε. From term N onward, every error is at most 2⁻ᴺ.',
     conclusion: 'The partial sums diverge in ordinary distance and converge to −1 in 2-adic distance.',
   },
   sources: [{ label: 'A first course on p-adic numbers · UC San Diego', href: 'https://mathweb.ucsd.edu/~amathers/padic_notes.pdf' }],

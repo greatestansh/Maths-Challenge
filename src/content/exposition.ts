@@ -26,8 +26,8 @@ export const exposition = {
   ],
   convergence: [
     'How many terms guarantee agreement to a chosen precision? Set the precision to five bits. After five terms the sum is 31, which has five ones on the right, just as −1 does. Any later term that we add is divisible by 32. Adding a multiple of 32 leaves the remainder modulo 32 unchanged, so five-bit agreement persists after this first match.',
-    'This works at any precision. If we ask for k low bits, the sum with k terms already has the required remainder. Each later sum differs from it by a sum of multiples of 2ᵏ. The slider can only show finitely many terms, but the argument depends on the chosen k alone, so we can ask for an arbitrarily small ball.',
-    'The chart follows the error to −1 on a fixed logarithmic scale. One extra term multiplies the ordinary error by two and divides the 2-adic error by two. Those equal multiplicative changes give opposite vertical moves. At every finite term the 2-adic error is positive. Convergence describes how small it eventually gets.',
+    'At precision k the same argument uses 2ᵏ in place of 32. The sum with k terms is already in the ball of radius 2⁻ᵏ around −1, and adding further multiples of 2ᵏ keeps it there.',
+    'On the fixed logarithmic scale, doubling an error and halving it give opposite moves of the same vertical size. The ordinary error doubles at each step and the 2-adic error halves. Both errors remain positive at every finite term.',
     'Agreement at every fixed precision also raises a question about the target itself. Why do the low bits of −1 show ones at every width? The answer comes from taking remainders of negative numbers and watching where a binary carry goes.',
   ],
   negative: [
@@ -41,6 +41,7 @@ export const exposition = {
     'What should one third mean when we can see only a finite number of bits? Find the remainder x for which three times x leaves remainder one. Modulo 2 this requires an odd number, so the first bit is one. Modulo 4, the two candidates with that bit are 1 and 3. Their products are 3 and 9, and only 9 leaves remainder one. The second bit is therefore also one.',
     'Suppose r works modulo 2ᵏ. The two candidates at the next precision are r and r plus 2ᵏ. Their difference is exactly 2ᵏ, so both preserve all the earlier bits. Their products differ by 3 times 2ᵏ, which is congruent to 2ᵏ modulo 2ᵏ⁺¹. Each product already leaves remainder one at the old precision. At the new precision one leaves remainder one, and the other leaves the remainder displaced by 2ᵏ. Exactly one new bit works.',
     'At eight bits the builder reaches 171. Its product with three is 513, which leaves remainder one when divided by 256. The integer 171 is the eight-bit representative of one third. Every extension of it in the builder preserves those eight bits, and its product with three retains the same eight-bit remainder.',
+    'The repeating pair can be checked two bits at a time. At width two the accepted remainder is 3 and its product is 1 + 2³. If the product at even width k is 1 + 2ᵏ⁺¹, add 2ᵏ⁺¹ to the representative. The new product is 1 + 2ᵏ⁺³, which leaves remainder 1 at width k + 2. The added bit is a 1 in position k + 1 and the bit in position k is 0, giving the pair 10 on the left.',
     'Division by two behaves differently. The congruence 2x ≡ 1 modulo 2 fails at the very first bit, since twice any integer is even. The rational number 1/2 still exists in the field of 2-adic numbers, with valuation −1 and norm 2. The compatible low-bit windows construct the 2-adic integers, and among these two fractions only 1/3 belongs there.',
   ],
   integers: [
@@ -51,7 +52,7 @@ export const exposition = {
     'The same idea connects the whole essay. Divisibility describes closeness, a tree records divisible differences as shared bits, and consistent remainders describe the points those paths approach. Try using the same reasoning on the three challenges below.',
   ],
   challenges: [
-    { question: 'When does the sum first get within distance 1/64 of −1?', answer: 'At six terms the error is 2⁻⁶ = 1/64, so term six is on the boundary of the closed ball. For strictly smaller error, use seven terms. All later sums stay in the closed ball because every new summand is divisible by 64.' },
+    { question: 'When is the 2-adic error to −1 first at most 1/64?', answer: 'At six terms the error is 2⁻⁶ = 1/64, so term six is on the boundary of the closed ball. For strictly smaller error, use seven terms. All later sums stay in the closed ball because every new summand is divisible by 64.' },
     { question: 'Do the radius-1/8 balls around −7 and 3 meet?', answer: 'The center −7 has remainder 1 modulo 8. The center 3 has remainder 3. Membership in both balls would require two different remainders at the same modulus, so the balls are disjoint.' },
     { question: 'Which bit extends the approximation 11 modulo 32 to one third modulo 64?', answer: 'The candidates are 11 and 43. Their products with 3 are 33 and 129. Since 129 leaves remainder 1 modulo 64, choose bit 1 in the 32s place. Reducing 43 modulo 32 gives 11, so the earlier window survives.' },
   ],

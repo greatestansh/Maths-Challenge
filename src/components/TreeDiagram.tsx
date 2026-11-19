@@ -2,7 +2,7 @@ import { useRef, useState, type KeyboardEvent } from 'react';
 import { pow2, residue } from '../math/twoadic.mjs';
 import { nodeKey, treeLayout, type DiagramNode, type TreeClass } from '../math/treeLayout';
 
-export function TreeDiagram({ depth, a, b, c, full, preview = false, compact = false, label, selected, onSelect }: {
+export function TreeDiagram({ depth, a, b, c, full, preview = false, compact = false, label, selected, comparison, centerMarker, onSelect }: {
   depth: number;
   a?: bigint;
   b?: bigint;
@@ -12,6 +12,8 @@ export function TreeDiagram({ depth, a, b, c, full, preview = false, compact = f
   compact?: boolean;
   label?: string;
   selected?: TreeClass;
+  comparison?: TreeClass;
+  centerMarker?: TreeClass;
   onSelect?: (node: TreeClass) => void;
 }) {
   const [focusKey, setFocusKey] = useState('0:0');
@@ -21,12 +23,15 @@ export function TreeDiagram({ depth, a, b, c, full, preview = false, compact = f
   if (b !== undefined) anchors.push({ depth, residue: residue(b, depth) });
   if (c !== undefined) anchors.push({ depth, residue: residue(c, depth) });
   if (selected) anchors.push(selected);
+  if (comparison) anchors.push(comparison);
   const { nodes, width, height } = treeLayout(depth, full, anchors, preview, compact);
   const byKey = new Map(nodes.map((node) => [node.key, node]));
   const activeKey = byKey.has(focusKey) ? focusKey : '0:0';
   const selectedKey = selected && nodeKey(selected);
+  const center = centerMarker && byKey.get(nodeKey(centerMarker));
 
   function tone(node: DiagramNode) {
+    if (comparison && node.depth >= comparison.depth && residue(node.residue, comparison.depth) === comparison.residue) return 'b';
     if (selected) {
       const commonDepth = Math.min(node.depth, selected.depth);
       return residue(node.residue, commonDepth) === residue(selected.residue, commonDepth) ? 'shared' : 'idle';
@@ -99,6 +104,11 @@ export function TreeDiagram({ depth, a, b, c, full, preview = false, compact = f
           {node.hiddenLeaves > 0 && <text className="collapsed-label" y="40" textAnchor="middle">{node.hiddenLeaves} leaves</text>}
         </g>;
       })}
+      {center && <g className="center-marker" data-center-address={center.key} aria-hidden="true"
+        style={{ transform: `translate(${center.x}px, ${center.y}px)` }}>
+        <circle r="12" />
+        <text y="39" textAnchor="middle">Center</text>
+      </g>}
     </svg>
   );
 }

@@ -4,7 +4,7 @@
 
 The opening already had a shared term count, playback controls, and a collapsed exact-sums table. The distance lab already included the suffix comparison, example pairs, factorization, and prediction. The residue explorer already supported comparison, tracing, closed balls, and convergence. The last chapter had a proof and a collapsed explanation of the all-ones expansion, including the eight-bit congruence. The update reuses the existing arithmetic, controls, and tree renderer and puts the final experiment and all-ones explanation directly in the reading path.
 
-The eight-stage expansion retained the binary bridge, tree guide, ball controls, and synchronized convergence lab. It shares the explorer’s ball readout with the prediction lesson. The carry experiment replaces the static eight-bit figure with the same arithmetic displayed one step at a time. The browser DOM contains 2,426 words of main prose, excluding figure labels, callouts within the carry figure, collapsed answers, and source notes.
+The eight-stage expansion retained the binary bridge, tree guide, ball controls, and synchronized convergence lab. It shares the explorer’s ball readout with the prediction lesson. The carry experiment replaces the static eight-bit figure with the same arithmetic displayed one step at a time. The browser checks keep the main prose within the essay’s approximately 2,000–2,500-word target.
 
 ## Checks run
 
@@ -12,8 +12,8 @@ The eight-stage expansion retained the binary bridge, tree guide, ball controls,
 | --- | --- |
 | `node --test Two_Adic_Codex_Build_Kit/two-adic-build-kit/starter/twoadic.test.mjs` from the workspace | Seven groups passed before UI work. |
 | `npm.cmd test` from the app | Seven groups passed, including 5,000 seeded triples with seed `20261119`, large integers, modular roots checked against a brute-force oracle, and the finite carry invariant. The engine, declarations, and tests match the kit files byte for byte. |
-| `npm.cmd run build` from the app | TypeScript and the Vite production build passed. JavaScript is approximately 168 kB gzip across the app and KaTeX chunks. CSS is approximately 14 kB gzip. Fonts are bundled separately. |
-| `$env:ADIC_BROWSER_CHANNEL = 'msedge'` followed by `npm.cmd run test:browser` from the app | All 33 Playwright checks passed against the production build in Edge on Windows. |
+| `npm.cmd run build` from the app | TypeScript and the Vite production build passed. JavaScript is approximately 170 kB gzip across the app and KaTeX chunks. CSS is approximately 15 kB gzip. Fonts are bundled separately. |
+| `$env:ADIC_BROWSER_CHANNEL = 'msedge'` followed by `npm.cmd run test:browser` from the app | All 34 Playwright checks passed against the production build in Edge on Windows. |
 | SHA‑256 of `original/SPEC.original.md` | Matches the kit manifest. |
 
 Browser coverage included the 1 and 9 split at depth 4, a hidden split with separately labeled resolution and exact distance, equality, invalid and oversized input, trace of −1, bit-reversal order, the full depth-7 node and edge counts, keyboard node selection with retained focus, recentering at 9, and convergence at terms 5 and 20. The opening playback passed pause, reset, and scroll-away checks. The static proof rendered with JavaScript disabled.
@@ -27,6 +27,8 @@ The new checks verified that 1 and 9 agree modulo 2, 4, and 8 and first disagree
 At 320 px, all three new figures fit the viewport with reduced motion, keyboard controls, and the longest binary sum. That state produced no page errors or axe WCAG 2.x A/AA findings.
 
 The expansion verified twelve successive doublings and reset, prediction before recentering at 9, unchanged highlighted membership, both largest distances among 1, 9, and 3, negative and repeated points, all eight successful fraction extensions, and the rejected sibling at each level. The final candidate gives `3 × 171 = 513` and `513 ≡ 1 (mod 256)`. The carry remained exact after each checked step and completed automatically. Pause, reset, changing width, and a simulated hidden-tab event each canceled playback. At 320 px with reduced motion, the sixteen-bit carry window scrolled locally and the whole page passed the checked axe rules.
+
+The polish checks confirmed that the center marker moves from 1 modulo 16 to 9 modulo 16 while the highlighted 1 modulo 8 subtree and member list stay fixed. They checked the highlighted nested and disjoint classes, chapter position on keyboard navigation and scrolling, both fraction candidate products and remainders at all eight widths, and the zero-padded history, newest bit, completion heading, and reset. At 320 px the completed builder fit without document overflow, the marker moved with no transition under reduced motion, and axe reported no findings under the tested rules. Carry and convergence playback and cancellation continued to pass.
 
 ## Reviewed screenshots
 
@@ -49,6 +51,8 @@ The distance lab was inspected at [375 px with two neighbors](screenshots/distan
 | Eight-bit carry | [Mobile](screenshots/carry-375.png) | [Desktop](screenshots/carry-1440.png) |
 
 The desktop expansion captures show the [three-point tree](screenshots/geometry-1440.png) and the [fraction builder](screenshots/fraction-1440.png).
+
+The polished figures show the [recentered ball](screenshots/recenter-1440.png), [nested and disjoint subtrees](screenshots/ball-relationships-1440.png), and the completed eight-bit window and history at [1,440 px](screenshots/fraction-complete-1440.png) and [320 px](screenshots/fraction-complete-320.png). In a separate 320 px keyboard check, the rightmost digit kept its horizontal position across all eight extensions.
 
 ## Pending review
 
