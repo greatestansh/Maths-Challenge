@@ -1,0 +1,85 @@
+.distance-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: .5rem 1rem;
+  border-block: 1px solid var(--line);
+  padding-block: .85rem;
+}
+.distance-inputs { align-items: start; gap: .7rem; }
+.distance-inputs .integer-field { flex: 0 1 8.5rem; }
+.neighbor-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 2.75rem;
+  margin-top: 1.4rem;
+  color: var(--stage-muted);
+  font-size: .9rem;
+  cursor: pointer;
+}
+.neighbor-toggle input { margin: 0; width: 1.05rem; height: 1.05rem; accent-color: var(--a); }
+.distance-presets { margin-block-start: 1.4rem; align-self: start; }
+.distance-presets[open] { margin-block-start: 0; }
+
+.measurement-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-block: 1rem; }
+.measurement-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+  padding: clamp(.9rem, 2vw, 1.5rem);
+  background: var(--stage-raised);
+}
+.measurement-panel h4 { margin: 0; font-size: clamp(1.28rem, 2.5vw, 1.65rem); font-family: var(--serif); font-weight: 400; }
+.measurement-caption { margin: .24rem 0 .95rem; font-size: .875rem; }
+.measurement-item { flex: 1; min-height: 7rem; border-top: 1px solid var(--line); padding-block: .65rem; }
+.measurement-value { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .2rem .6rem; margin-bottom: .48rem; }
+.measurement-value span { font-size: .9rem; }
+.measurement-value strong { font: 700 clamp(1.28rem, 3vw, 1.85rem) var(--mono); }
+.distance-ruler { display: block; width: 100%; height: 1rem; }
+.ruler-track { fill: var(--line); }
+.ruler-fill { fill: var(--b); }
+.ruler-ticks { fill: none; stroke: var(--stage-muted); stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+.ruler-labels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .25rem; margin-top: .25rem; font: .825rem var(--mono); color: var(--stage-muted); }
+.ruler-labels span:nth-child(2) { text-align: center; }
+.ruler-labels span:last-child { text-align: end; }
+.distance-bit-row { display: grid; grid-template-columns: minmax(1.1em, 1.5em) repeat(8, minmax(0, 1.55em)); font: 1.05rem/1.3 var(--mono); }
+.distance-bit-row > span:not(.visually-hidden):not(.distance-bit-label) { text-align: center; border-bottom: 2px solid transparent; }
+.distance-bit-row .distance-bit-label { color: var(--stage-muted); }
+.distance-bit-row > span.matched:not(.visually-hidden):not(.distance-bit-label) { color: var(--shared); border-color: var(--shared); }
+.distance-bit-note { margin: .4rem 0 0; font-size: .875rem; }
+.distance-ranking { margin: .45rem 0 0; border-top: 1px solid var(--line); padding-top: .65rem; font-weight: 700; }
+.difference-ledger { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: clamp(.6rem, 2vw, 1.65rem); row-gap: .4rem; margin-block: 1rem; }
+.difference-ledger p { margin: 0; }
+.difference-ledger > p:not(.eyebrow) { font-size: 1rem; }
+.difference-ledger > p:nth-child(2) { color: var(--stage-text); }
+
+.distance-drawer { border-block-start: 1px solid var(--line); padding-block: .15rem; }
+.distance-drawer > summary { min-height: 2.75rem; padding-block: .6rem; color: var(--stage-muted); font-weight: 700; cursor: pointer; }
+.distance-drawer[open] { padding-bottom: .9rem; }
+.distance-drawer > p { margin-block: .45rem .7rem; }
+.factorization-inputs { display: flex; flex-wrap: wrap; align-items: end; gap: .65rem; margin-block: .8rem; }
+.factorization-inputs .integer-field { flex-basis: 10rem; }
+.factorization-input-value { color: var(--stage-muted); }
+.factorization-input-value strong { color: var(--stage-text); font-family: var(--mono); }
+.quotient-list { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-block: .8rem .45rem; padding: 0; list-style: none; }
+.quotient-list li { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--mono); }
+.quotient-list li > span:not(.quotient-operator) { padding: .38rem .5rem; border: 1px solid var(--line); border-radius: .3rem; background: var(--stage-raised); }
+.quotient-list li > span.current-quotient { color: var(--shared); border-color: var(--shared); }
+.quotient-operator { font-size: .85rem; }
+.quotient-status p, .prediction-feedback p, .zero-valuation { margin-block: .55rem; }
+.equation-divider { display: inline-block; padding-inline: .45rem; color: var(--stage-muted); }
+.prediction-value { display: inline-block; margin-inline-end: 1.15rem; }
+
+@media (max-width: 47rem) {
+  .measurement-grid { grid-template-columns: 1fr; }
+  .measurement-item { min-height: auto; }
+  .neighbor-toggle, .distance-presets { margin-block-start: 0; }
+}
+
+@media (max-width: 33rem) {
+  .distance-inputs .integer-field { flex-basis: calc((100% - .7rem) / 2); }
+  .distance-inputs .neighbor-toggle { flex-basis: 100%; }
+}

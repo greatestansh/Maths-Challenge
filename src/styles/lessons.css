@@ -1,0 +1,94 @@
+.lesson-step { padding-inline: .4rem; font: .875rem var(--mono); }
+.lesson-equation { font-size: clamp(1.2rem, 2.6vw, 1.55rem); }
+.low-bit-grid, .guide-grid, .convergence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: .85rem 1rem;
+}
+.low-bit-grid { grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); }
+.low-bit-words, .low-bit-result, .convergence-chart, .convergence-path {
+  padding: clamp(.8rem, 2vw, 1.4rem);
+  background: var(--stage-raised);
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+}
+.low-bit-words { display: grid; align-content: center; }
+.low-bit-words .bit-word { font-size: clamp(1.2rem, 3vw, 1.7rem); }
+.low-bit-words .bit-word .bit-label { min-width: 2.25em; margin: 0; text-align: start; white-space: nowrap; }
+.low-bit-words sub { align-self: end; font-size: .67em; }
+.low-bit-words .bit-word > span:not(.bit-label):not(.visually-hidden) { min-width: .9em; border-radius: .15rem; }
+.low-bit-words .inspected-bit { background: var(--stage); }
+.low-bit-words .inspected-bit:not(.matching-bit) { outline: 1px solid currentColor; }
+.lesson-equation, .low-bit-result p:not(.eyebrow), .low-bit-words p { margin: .55rem 0 0; }
+
+.guide-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: center; min-height: 16rem; }
+.guide-copy h4, .convergence-path h4 { margin: 0; font: 400 1.45rem/1.2 var(--serif); }
+.guide-copy p { max-width: 45ch; margin: .45rem 0; line-height: 1.55; }
+.lesson-diagram .compact-diagram { min-width: 0; max-width: 28rem; margin-inline: auto; }
+.lesson-diagram .tree-node text, .lesson-diagram .branch-bit, .lesson-diagram .level-label { font-size: 16px; }
+.lesson-diagram .branch-bit.tone-idle { fill: var(--stage-muted); }
+.lesson-diagram .tree-node .collapsed-label { font-size: 12px; }
+.stage-button.featured-control { color: var(--shared); border-color: var(--shared); }
+
+.convergence-controls { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem 2rem; }
+.convergence-controls .sum-controls { width: min(100%, 31rem); }
+.convergence-controls .select-label { flex-wrap: wrap; }
+.convergence-numbers {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
+  gap: .9rem;
+  margin: 1.25rem 0 0;
+  padding-block: .9rem;
+  border-block: 1px solid var(--line);
+}
+.convergence-numbers > div { min-width: 0; }
+.convergence-numbers dd { margin: .38rem 0 0; font: 400 clamp(1.15rem, 3vw, 1.75rem) var(--mono); overflow-wrap: anywhere; }
+.convergence-numbers .convergence-binary { font-size: .9rem; }
+.convergence-binary code { color: var(--shared); }
+.convergence-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); margin-bottom: 0; }
+.convergence-chart { margin: 0; }
+.convergence-chart figcaption { display: grid; gap: .3rem; }
+.convergence-chart figcaption span { font-size: .9rem; }
+.error-legend { margin-block: .8rem .3rem; }
+.error-legend .tone-b i { border-block-start-style: solid; }
+.convergence-chart svg { display: block; width: 100%; height: auto; }
+.convergence-chart svg text { fill: var(--stage-muted); font: 16px var(--mono); }
+.chart-gridline { stroke: var(--line); }
+.chart-cursor { stroke: var(--shared); stroke-dasharray: 3 4; }
+.error-line { fill: none; stroke-width: 2.5; }
+.ordinary-line { stroke: var(--b); }
+.adic-line { stroke: var(--a); stroke-dasharray: 6 4; }
+.ordinary-marker { fill: var(--b); }
+.adic-marker { fill: var(--a); }
+.convergence-path .bit-word .bit-label { min-width: 2.1em; text-align: start; }
+.convergence-path .bit-word .matching-bit { color: var(--shared); }
+.convergence-path p { margin: .85rem 0; }
+.convergence-tree { border-top: 1px solid var(--line); margin: .8rem 0 0; padding-top: .65rem; }
+.convergence-tree figcaption { color: var(--stage-muted); font-size: .875rem; margin-bottom: .5rem; }
+.convergence-tree .tree-node text { paint-order: stroke; stroke: var(--stage-raised); stroke-width: 3px; }
+
+.carry-example { margin: 1rem 0 1.25rem; padding: clamp(.8rem, 3vw, 1.3rem); }
+.carry-example figcaption { font: 400 1.35rem/1.2 var(--serif); margin-bottom: .75rem; }
+.carry-reading { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.2rem; }
+.carry-words .bit-word { gap: .18rem; font-size: clamp(.9rem, 2.5vw, 1.05rem); }
+.carry-words .bit-word .bit-label { min-width: 4.65em; margin-inline-end: .2rem; text-align: start; }
+.carry-words .bit-word:last-child { border-top: 1px solid var(--line); padding-top: .4rem; }
+.carry-out { flex: 1 1 11rem; padding: .65rem .75rem; background: var(--stage-raised); border-inline-start: 2px solid var(--b); }
+.carry-out p:not(.eyebrow) { margin: .25rem 0 0; font-size: .9rem; }
+.carry-arithmetic { display: flex; flex-wrap: wrap; gap: .65rem 1.25rem; border-top: 1px solid var(--line); margin: .7rem 0 0; padding-top: .7rem; font-size: .95rem; }
+.carry-arithmetic dt { color: var(--stage-muted); }
+.carry-arithmetic dd { margin: .2rem 0 0; }
+
+@media (max-width: 47rem) {
+  .low-bit-grid, .guide-grid, .convergence-grid { grid-template-columns: 1fr; }
+  .guide-grid { min-height: 0; }
+  .lesson-diagram .tree-node text, .lesson-diagram .branch-bit, .lesson-diagram .level-label { font-size: 19px; }
+  .lesson-diagram .tree-node .collapsed-label { font-size: 15px; }
+  .convergence-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .convergence-sum { grid-column: 1 / -1; }
+}
+
+@media (max-width: 25rem) {
+  .convergence-path .bit-word { gap: .18rem; }
+}

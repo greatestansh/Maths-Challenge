@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore a different idea of distance through an interactive 2-adic residue tree." />
+    <meta name="theme-color" content="#f3f0e7" />
+    <title>A Different Kind of Close · An interactive 2-adic essay</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>How can a growing sum approach −1?</h1>
+        <p>The sum of the first n powers of two is Sₙ = 2ⁿ − 1. Its ordinary distance to −1 is 2ⁿ. Its 2-adic distance to −1 is 2⁻ⁿ, because the difference is divisible by exactly n powers of two.</p>
+        <p>Given any ε &gt; 0, choose N with 2⁻ᴺ &lt; ε. For every n ≥ N, the 2-adic distance is less than ε. This proves convergence to −1 in the 2-adic metric.</p>
+        <p>For example, from 1 the ordinary distances to 2 and 9 are 1 and 8. The 2-adic distances are 1 and 1/8 because 1 − 9 = −8 = 2³ · (−1) and 1 − 2 = −1 is odd.</p>
+        <p>The remainder of −1 modulo 2ᵏ is 2ᵏ − 1, or k ones in binary. In eight bits, 255 + 1 equals 256. The remainder is zero and the carry at bit 8 is 256. The partial sums diverge in ordinary distance and converge to −1 in 2-adic distance.</p>
+        <p>Enable JavaScript to explore the sums, the two distances, and the residue tree.</p>
+      </main>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
